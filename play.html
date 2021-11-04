@@ -6,12 +6,46 @@
 	<body>
 		<!--Esta será el area que ocuapria el juego, se puede reajustar cuando queramos-->
 		<canvas id="lienzo" width="600" height="600"></canvas>
-
 		<script>
 
 			/*Aqui inicia nuestro código*/
+			var canvas = document.getElementById("lienzo");
+			var ctx = canvas.getContext("2d");
+
+			
+			var x = 50
+			var contador = 0
+
+			function drawCar(){
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+				var fondo = new Image();
+				fondo.src = "./images/fondo_Paisaje.jpg";
+				ctx.drawImage(fondo, 0, 0, 600, 600);
+				fondo.onload = function(){
+					ctx.drawImage(fondo, 0, 0, 600, 600);
+				}
+
+				var coche = new Image();
+				coche.src = "./images/coche2.png";
+				ctx.drawImage(coche, x, 300, 150, 300);
+				coche.onload = function(){
+  					ctx.drawImage(coche, x, 300, 150, 300);
+  					//ctx.drawImage(coche, 220, 300, 150, 300);
+				}
+				if(x <400 && contador==0){
+					x += 20
+				}else if(x > 50){
+					contador=1
+					x -= 20
+				}else{
+					contador = 0
+				}
+			}
+			setInterval(drawCar, 50);
 
 
+		
 			/*Aquí termina nuestro código*/
 		</script>
 
