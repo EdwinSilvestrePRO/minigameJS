@@ -6,51 +6,35 @@
 	<body>
 		<!--Esta será el area que ocuapria el juego, se puede reajustar cuando queramos-->
 		<canvas id="lienzo" width="600" height="600"></canvas><br/>
-		<div id="left" onclick="moveLeft();">
-			<svg height='50'>
+		<div >
+		<span  id="left" onclick="moveLeft();">
+			<svg height='50'  >
 				<polyline points="3 30 28 3 28 53"></polyline>
 			</svg>
-		</div>
-		<div id="right" onclick="moveRight();">
-			<svg height='50' >
+		</span>
+		<span id="right" onclick="moveRight();">
+			<svg height='50' width="60px" >
 				<polyline points="3 3 30 28 3 53"></polyline>
 			</svg>
-		<div>
+		<span>
+			</div>
 		<script>
 
 			/*Aqui inicia nuestro código*/
 			var canvas = document.getElementById("lienzo");
 			var ctx = canvas.getContext("2d");
 
-			
 			var carX = 255
-			var carY = 390
 			var contador=0
-			
-			var lineY = 0
-			
-			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			var arbolY=-200
+			var lineY = -30
 
 			var fondo = new Image();
-			fondo.src = "./images/fondo.png";
-			ctx.drawImage(fondo, 0, 0, 600, 600);
-			fondo.onload = function(){
-				ctx.drawImage(fondo, 0, 0, 600, 600);
-			}
-				var linea = new Image();
-				linea.src = "./images/linea.png";
-				ctx.drawImage(linea, 300, lineY, 10, 90);
-				linea.onload = function(){
-					ctx.drawImage(linea, 300, lineY, 10, 90);
-				}
-
+			var linea = new Image();
+			var bache = new Image();
+			var arbolRight = new Image();
+			var arbolLeft = new Image();
 			var coche = new Image();
-			coche.src = "./images/coche.png";
-			ctx.drawImage(coche, 220, 300, 100, 200);
-			coche.onload = function(){
-  				ctx.drawImage(coche, 220, 300, 100, 200);
-  				//ctx.drawImage(coche, 220, 300, 150, 300);
-			}
 
 			function chargeFrames(){
 				ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -60,51 +44,77 @@
 				fondo.onload = function(){
 					ctx.drawImage(fondo, 0, 0, 600, 600);
 				}
-
 			}
 
-			function drawCar(x, y){
-				
-				var coche = new Image();
+			function drawBache(){
+				arbolLeft.src = "./images/arboles2.png";
+				ctx.drawImage(arbolLeft, 0, arbolY, 100, 800);
+				arbolLeft.onload = function(){
+					ctx.drawImage(arbolLeft, 0, arbolY, 100, 800);
+				}
+			}
+
+			function drawCar(x){
 				coche.src = "./images/coche.png";
-				ctx.drawImage(coche, x, y, 100, 200);
+				ctx.drawImage(coche, x, 390, 100, 200);
 				coche.onload = function(){
-  					ctx.drawImage(coche, x, y, 100, 200);
-  					//ctx.drawImage(coche, 220, 300, 150, 300);
+  					ctx.drawImage(coche, x, 390, 100, 200);
 				}
 			}
 			
 			function moveLeft(){
-				chargeFrames()
-				carX = 120
-				carY= 390
-				drawCar(carX, carY)
+				carX = carX == 255 ? 120 :  carX == 370 ? 255 : 120
+				drawCar(carX)
 			}	
 
 			function moveRight(){
-				chargeFrames()
-				carX = 370
-				carY= 390
-				drawCar(carX, carY)
+				carX = carX == 255 ? 370 :  carX == 120 ? 255 : 370
+				drawCar(carX)
+			}
+
+			function drawTreeLeft(){
+				arbolLeft.src = "./images/arboles2.png";
+				ctx.drawImage(arbolLeft, 0, arbolY, 100, 800);
+				arbolLeft.onload = function(){
+					ctx.drawImage(arbolLeft, 0, arbolY, 100, 800);
+				}
+				if(arbolY >=-30){
+					arbolY = -200
+				}else if(arbolY < 120){
+					arbolY += 10
+				}
+			}
+
+			function drawTreeRight(){
+				arbolRight.src = "./images/arboles2.png";
+				ctx.drawImage(arbolRight, 500, arbolY, 100, 800);
+				arbolRight.onload = function(){
+					ctx.drawImage(arbolRight, 500, arbolY, 100, 800);
+				}
+				if(arbolY >=-30){
+					arbolY = -200
+				}else if(arbolY < 120){
+					arbolY += 10
+				}
 			}
 
 			function drawLine(){
 				chargeFrames()
-				var linea = new Image();
+				drawTreeRight()
+				drawTreeLeft()
 				linea.src = "./images/linea.png";
 				ctx.drawImage(linea, 300, lineY, 10, 90);
 				linea.onload = function(){
 					ctx.drawImage(linea, 300, lineY, 10, 90);
 				}
+				
 				if(lineY >=600){
 					lineY = 0
 				}else if(lineY < 600){
 					lineY += 20
-				}else{
-					contador = 0
 				}
 				
-				drawCar(carX, carY)
+				drawCar(carX)
 			}
 			setInterval(drawLine, 30);
 
