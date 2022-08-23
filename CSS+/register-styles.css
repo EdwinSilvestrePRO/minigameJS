@@ -1,0 +1,73 @@
+div.register {
+    background-color: rgba(0, 0, 0, 0.753);
+    position:fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 22;
+    display:flex;
+    flex-flow:column nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+div.register form {
+    background-color:none;
+    color: white;
+    width: 50%;
+    padding:3px;
+    opacity: 0;
+    transition: 1.99s opacity ease;
+}
+div.register form.visible {
+    opacity: 1;
+}
+
+div.register form fieldset {
+    border: none;
+}
+
+div.register form fieldset legend {
+    font: bolder 1.9em monospace;
+    text-align:center;
+}
+
+div.register form fieldset label,  
+div.register form fieldset input {
+    display: block;
+    font:bolder 1.5em serif;
+    margin:0px;
+}
+
+div.register form fieldset label {
+    font:bolder 1.8em serif;
+}
+
+div.register form fieldset input {
+    outline:none;
+}
+
+div.register form fieldset input[type="submit"] {
+    background-color: yellow;
+    cursor: pointer;
+    color: black;
+    transition:400ms all ease-in;
+}
+div.register form fieldset input[type="submit"]:hover {
+    background-color:white;
+    color:blue;
+}
+div.register form fieldset input[type="submit"]:active {
+    background-color: red;
+    color:white;
+}
+
+div.register form fieldset div.message {
+    font: lighter 18px sans-serif;
+    width: 100%;
+}
+div.register form fieldset div.message.err {
+    color: red;
+}
+div.register form fieldset div.message.warn {
+    color: yellow;
+}

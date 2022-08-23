@@ -1,0 +1,36 @@
+html, body {
+    padding:0px;
+    margin:0px;
+    box-sizing:border-box;
+}
+*:after, *::before {
+    box-sizing:border-box;
+}
+html.load::-webkit-scrollbar {
+    display:none;
+}
+body {
+    background-color: black;
+}
+body.load {
+    width:100vw;
+    height:100vh;
+    background-color:black;
+    background-image: radial-gradient(closest-side, transparent, red 101vw);
+    display:flex;
+    flex-flow:row nowrap;
+    align-items:center;
+    justify-content:center;
+}
+header.loader {
+    background-color:transparent;
+    width:80%;
+    height:80%;
+    display:flex;
+    flex-flow: row wrap;
+    align-items:center;
+    justify-content: center;
+}
+header.loader svg {
+    background-color:transparent;
+}

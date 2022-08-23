@@ -1,0 +1,12 @@
+@import "./load-styles.css" all;
+
+@import "./register-styles.css" all;
+
+@import "./start-styles.css" all;
+body {
+    opacity: 1;
+    transition: 1.44s opacity linear;
+}
+body#hidden {
+    opacity: 0;
+}

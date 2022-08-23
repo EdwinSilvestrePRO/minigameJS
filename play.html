@@ -1,155 +1,56 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>titulo</title>
-	</head>
-	<body>
-		<!--Esta será el area que ocuapria el juego, se puede reajustar cuando queramos-->
-		<canvas id="lienzo" width="600" height="600"></canvas><br/>
-		<div >
-		<span  id="left" onclick="moveLeft();">
-			<svg height='50'  >
-				<polyline points="3 30 28 3 28 53"></polyline>
-			</svg>
-		</span>
-		<span id="right" onclick="moveRight();">
-			<svg height='50' width="60px" >
-				<polyline points="3 3 30 28 3 53"></polyline>
-			</svg>
-		<span>
-			</div>
-		<script>
+<html lang="en" class="load">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Lo he bautizado como "Cars Collapse" compañeros: Codevelp*****************-->
+	<title>Car Collapse</title>
+	<link rel="stylesheet" href="./CSS+/desing.css"/>
+</head>
+<body class="load" id="">
+	<header class="loader">
+		<svg width="426px" data-width="426" height="426px" id="svgLoader">
+			<defs>
 
-			/*Aqui inicia nuestro código*/
-			var canvas = document.getElementById("lienzo");
-			var ctx = canvas.getContext("2d");
-
-			var carX = 255
-			var contador=0
-			var arbolY=-200
-			var lineY = -30
-
-			var fondo = new Image();
-			var linea = new Image();
-			var bache = new Image();
-			var arbolRight = new Image();
-			var arbolLeft = new Image();
-			var coche = new Image();
-
-			function chargeFrames(){
-				ctx.clearRect(0, 0, canvas.width, canvas.height);
-				var fondo = new Image();
-				fondo.src = "./images/fondo.png";
-				ctx.drawImage(fondo, 0, 0, 600, 600);
-				fondo.onload = function(){
-					ctx.drawImage(fondo, 0, 0, 600, 600);
-				}
-			}
-
-			function drawBache(){
-				arbolLeft.src = "./images/arboles2.png";
-				ctx.drawImage(arbolLeft, 0, arbolY, 100, 800);
-				arbolLeft.onload = function(){
-					ctx.drawImage(arbolLeft, 0, arbolY, 100, 800);
-				}
-			}
-
-			function drawCar(x){
-				coche.src = "./images/coche.png";
-				ctx.drawImage(coche, x, 390, 100, 200);
-				coche.onload = function(){
-  					ctx.drawImage(coche, x, 390, 100, 200);
-				}
-			}
-			
-			function moveLeft(){
-				carX = carX == 255 ? 120 :  carX == 370 ? 255 : 120
-				drawCar(carX)
-			}	
-
-			function moveRight(){
-				carX = carX == 255 ? 370 :  carX == 120 ? 255 : 370
-				drawCar(carX)
-			}
-
-			function drawTreeLeft(){
-				arbolLeft.src = "./images/arboles2.png";
-				ctx.drawImage(arbolLeft, 0, arbolY, 100, 800);
-				arbolLeft.onload = function(){
-					ctx.drawImage(arbolLeft, 0, arbolY, 100, 800);
-				}
-				if(arbolY >=-30){
-					arbolY = -200
-				}else if(arbolY < 120){
-					arbolY += 10
-				}
-			}
-
-			function drawTreeRight(){
-				arbolRight.src = "./images/arboles2.png";
-				ctx.drawImage(arbolRight, 500, arbolY, 100, 800);
-				arbolRight.onload = function(){
-					ctx.drawImage(arbolRight, 500, arbolY, 100, 800);
-				}
-				if(arbolY >=-30){
-					arbolY = -200
-				}else if(arbolY < 120){
-					arbolY += 10
-				}
-			}
-
-			function drawLine(){
-				chargeFrames()
-				drawTreeRight()
-				drawTreeLeft()
-				linea.src = "./images/linea.png";
-				ctx.drawImage(linea, 300, lineY, 10, 90);
-				linea.onload = function(){
-					ctx.drawImage(linea, 300, lineY, 10, 90);
-				}
+				<path id="cars" stroke="white" fill="transparent" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"
+				d="M 60 56 H20 v50 H60 M 70 106 v-25 h 30 v 28Z M 110 106 v -20 v 10 l8 -4 M 125 106 l 18 -2 l -16 -12 l 16 -10"></path>
 				
-				if(lineY >=600){
-					lineY = 0
-				}else if(lineY < 600){
-					lineY += 20
-				}
-				
-				drawCar(carX)
-			}
-			setInterval(drawLine, 30);
+				<path id="collapse" stroke="white" fill="transparent" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"
+				d="M 60 56 H20 v50 H60 M 76 106 h 30 v -25 h -30Z M 120 106 v -50 M 145 106 v -50 M 162 106 v -25 h 30 v 29Z M 206 106 v -25 h 30 v 25Z v 20 M 248 106 l 18 -2 l -19 -18 l 16 -6 M 292 106 h -14 v -25 h14 v 11 h -14"></path>
+			</defs>
+			<use href="#cars" x="120" y="8"></use>
+			<use href="#collapse" x="44" y="80"></use>
+			<rect id="track" width="0" height="30" stroke="transparent" stroke-width="3" fill="blue" x="2" y="220"></rect>
+			<rect width="422" height="30" stroke="yellow" stroke-width="3" fill="transparent" x="2" y="220"></rect>
+			<text id="porcent" x="188" y="240" fill="white" style="font-size:18px;">0%</text>
+		</svg>
+	</header>
+	<!-- aqui estas los script de ES+ -->
+	<script type="module" src="./main.js"></script>
+	<!-- aqui esta la interfaz de registro de usuario -->
+	<template id="@register">
+		<div id="Register" class="register">
+			<form class="" action="none****codevelp" method="post" enctype="multipart/form-data" name="User">
+				<fieldset>
+					<legend>Registrate para jugar: </legend>
+					<label for="names">Nombres:</label>
+					<input type="text" id="names" name="names" placeholder="Nombre Apellidos"/>
+					<div class="message"></div>
+					<label for="email">Email:</label>
+					<input type="email" id="email" name="email" placeholder="codevelp@codevelp.com"/>
+					<div class="message"></div>
+					<input type="submit" value="Registrar"/>
+				</fieldset>
+			</form>
+		</div>
+	</template>
 
-			/*function drawCar(){
-				ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-				var fondo = new Image();
-				fondo.src = "./images/fondo.png";
-				ctx.drawImage(fondo, 0, 0, 600, 600);
-				fondo.onload = function(){
-					ctx.drawImage(fondo, 0, 0, 600, 600);
-				}
-
-				var coche = new Image();
-				coche.src = "./images/coche2.png";
-				ctx.drawImage(coche, x, 300, 150, 300);
-				coche.onload = function(){
-  					ctx.drawImage(coche, x, 300, 150, 300);
-  					//ctx.drawImage(coche, 220, 300, 150, 300);
-				}
-				if(x <400 && contador==0){
-					x += 20
-				}else if(x > 50){
-					contador=1
-					x -= 20
-				}else{
-					contador = 0
-				}
-			}
-			setInterval(drawCar, 50);*/
-
-
-		
-			/*Aquí termina nuestro código*/
-		</script>
-
-	</body>
+	<!-- aqui esta la interfaz del comienzo del juego -->
+	<template id="@start">
+		<header>
+			<h1>start game</h1>
+		</header>
+	</template>
+</body>
 </html>
