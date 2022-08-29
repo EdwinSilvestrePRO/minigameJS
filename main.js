@@ -3,7 +3,7 @@ import { viewInterface } from './ES+/start.js';
 window
 .addEventListener("DOMContentLoaded", e=> 
 {
-/*
+/* 
  Dentro del bloque try esta la lógica de 
  programacion para que este juego carge
  los recursos y la interfaz gráfica que
@@ -69,5 +69,7 @@ window
     document.body.classList.remove("load");
     document.body.removeChild(document.querySelector("header.loader"));
     setTimeout(viewInterface, 3000);
+    // setTimeout(viewInterface, 0);
 });
 
+// window.dispatchEvent(new Event("startGame"));

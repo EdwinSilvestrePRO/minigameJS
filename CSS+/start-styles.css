@@ -1,4 +1,17 @@
 body.start {
-    background-color: black;
-    color: white;
+    background-color: #000000;
+    width:100vw;
+    height:100vh;
+    display:flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+}
+body.start main.panel canvas {
+    padding: 2px;
+}
+body.start main.panel {
+    width: max-content;
+    height: max-content;
+    background-color: #444;
 }
